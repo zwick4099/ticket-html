@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funny Prank</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: 50px;
+        }
+        .message {
+            font-size: 2em;
+            margin-top: 20px;
+            color: green;
+        }
+        .button {
+            font-size: 1.2em;
+            padding: 10px 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hey there, Click the button if you dare!</h1>
+    <button class="button" onclick="startPrank()">Click Me!</button>
+    <div class="message" id="message"></div>
+
+    <script>
+        function startPrank() {
+            const messages = [
+                "You clicked the button! 😂",
+                "Did you think something serious would happen? 😜",
+                "Surprise! Nothing happened! 😂",
+                "Keep clicking, maybe something will change! 🤣",
+                "Fooled you! 😆"
+            ];
+            let index = 0;
+
+            document.getElementById('message').innerText = messages[index];
+            index = (index + 1) % messages.length;
+
+            setInterval(() => {
+                document.getElementById('message').innerText = messages[index];
+                index = (index + 1) % messages.length;
+            }, 2000);
+
+            let originalTitle = document.title;
+            setInterval(() => {
+                document.title = document.title === originalTitle ? "Gotcha! 😂" : originalTitle;
+            }, 1000);
+
+            document.body.style.backgroundColor = getRandomColor();
+            setInterval(() => {
+                document.body.style.backgroundColor = getRandomColor();
+            }, 500);
+        }
+
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+    </script>
+</body>
+</html>
